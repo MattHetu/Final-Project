@@ -1,0 +1,286 @@
+//Global variables
+var scoreDirection = 0;
+var score = 0;
+var currentScene = 0;
+
+
+//button
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+Button.prototype.draw = function() {
+    fill(123, 156, 186);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+var btn1 = new Button({
+    x: 127,
+    y: 273,
+    label: "Start game!",
+    onClick: function() {
+        currentScene = 1;
+    }
+});
+mouseClicked = function() {
+    btn1.handleMouseClick();
+};
+var splash = function()
+{
+    fill(198, 223, 227);
+    rect(0,0,400,400);
+    fill(109, 124, 219);
+    textSize(40);
+    text("Final",135,180);
+    btn1.draw();
+};
+
+
+
+
+
+
+
+
+//my bitmoji
+    var drawBody = function(bitmojiX, bitmojiY, bitmojiH){
+    //stroke(0, 0, 0);
+    //body
+    fill(0, 0, 0);
+    rect(bitmojiX-(bitmojiH/100*20), bitmojiY+(bitmojiH/100*194), (bitmojiH/100*239), (bitmojiH/100*188), 66);
+    //tie
+    fill(107, 45, 60);
+    bezier(bitmojiX+(bitmojiH/100*80), bitmojiY+(bitmojiH/100*195), bitmojiX+(bitmojiH/100*83), bitmojiY+(bitmojiH/100*458), bitmojiX+(bitmojiH/100*109), bitmojiY+(bitmojiH/100*304), bitmojiX+(bitmojiH/100*103), bitmojiY+(bitmojiH/100*197));
+
+    //Initials (S)
+    noStroke();
+    fill(0, 21, 255);
+    ellipse(bitmojiX+(bitmojiH/100*170), bitmojiY+(bitmojiH/100*226), (bitmojiH/100*72), (bitmojiH/100*42));
+    fill(0, 0, 0);
+    ellipse(bitmojiX+(bitmojiH/100*182), bitmojiY+(bitmojiH/100*227), (bitmojiH/100*51), (bitmojiH/100*35));
+    fill(0, 34, 255);
+    ellipse(bitmojiX+(bitmojiH/100*172), bitmojiY+(bitmojiH/100*258), (bitmojiH/100*67), (bitmojiH/100*34));
+    fill(0, 0, 0);
+    ellipse(bitmojiX+(bitmojiH/100*150), bitmojiY+(bitmojiH/100*258), (bitmojiH/100*65), (bitmojiH/100*28));
+    
+    //Initials (Z)
+    noStroke();
+    fill(0, 13, 255);
+    rect(bitmojiX+(bitmojiH/100*22), bitmojiY+(bitmojiH/100*216), (bitmojiH/100*51), 6);
+    rect(bitmojiX+(bitmojiH/100*22), bitmojiY+(bitmojiH/100*259), (bitmojiH/100*54), 6);
+    rect(bitmojiX+(bitmojiH/100*12), bitmojiY+(bitmojiH/100*206), (bitmojiH/100*65), (bitmojiH/100*62));
+    //z dents
+    fill(0, 0, 0);
+    triangle(bitmojiX+(bitmojiH/100*10), bitmojiY+(bitmojiH/100*263), bitmojiX+(bitmojiH/100*5), bitmojiY+(bitmojiH/100*214), bitmojiX+(bitmojiH/100*54), bitmojiY+(bitmojiH/100*213));//right
+    triangle(bitmojiX+(bitmojiH/100*80), bitmojiY+(bitmojiH/100*254), bitmojiX+(bitmojiH/100*26), bitmojiY+(bitmojiH/100*256), bitmojiX+(bitmojiH/100*78), bitmojiY+(bitmojiH/100*212));//left
+    
+};
+    var drawHead = function(bitmojiX, bitmojiY, bitmojiH){
+//head/hair
+    fill(247, 233, 220);
+    ellipse(bitmojiX+(bitmojiH/100*100), bitmojiY+(bitmojiH/100*113), (bitmojiH/100*137), (bitmojiH/100*167));
+        
+    
+    //left eye
+    fill(255, 255, 255);
+    ellipse(bitmojiX+(bitmojiH/100*70), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*45), (bitmojiH/100*29));
+    
+    //left eye color
+    fill(69, 46, 36);
+    ellipse(bitmojiX+(bitmojiH/100*70), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*20), (bitmojiH/100*17));
+    //left eye dot
+    fill(0, 0, 0);
+    ellipse(bitmojiX+(bitmojiH/100*70), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*11), (bitmojiH/100*10));
+    
+    //right eye
+    fill(255, 255, 255);
+    ellipse(bitmojiX+(bitmojiH/100*136), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*45), (bitmojiH/100*29));
+    
+    //right eye color
+    fill(69, 46, 36);
+    ellipse(bitmojiX+(bitmojiH/100*135), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*20), (bitmojiH/100*17));
+    //right eye dot
+    fill(0, 0, 0);
+    ellipse(bitmojiX+(bitmojiH/100*135), bitmojiY+(bitmojiH/100*110), (bitmojiH/100*11), (bitmojiH/100*10));
+    
+    //eyebrows
+    rect(bitmojiX+(bitmojiH/100*39), bitmojiY+(bitmojiH/100*87), (bitmojiH/100*47), (bitmojiH/100*3));
+    rect(bitmojiX+(bitmojiH/100*121), bitmojiY+(bitmojiH/100*87), (bitmojiH/100*47), (bitmojiH/100*3));
+    
+    stroke(0, 0, 0);
+    
+    //nose
+    line(bitmojiX+(bitmojiH/100*104), bitmojiY+(bitmojiH/100*125), bitmojiX+(bitmojiH/100*112), bitmojiY+(bitmojiH/100*139));
+    line(bitmojiX+(bitmojiH/100*104), bitmojiY+(bitmojiH/100*144), bitmojiX+(bitmojiH/100*112), bitmojiY+(bitmojiH/100*139));
+    
+    //mouth
+    line(bitmojiX+(bitmojiH/100*87), bitmojiY+(bitmojiH/100*156), bitmojiX+(bitmojiH/100*119), bitmojiY+(bitmojiH/100*163));
+    
+    //facial hair
+    line(bitmojiX+(bitmojiH/100*102), bitmojiY+(bitmojiH/100*152), bitmojiX+(bitmojiH/100*113), bitmojiY+(bitmojiH/100*158));
+    line(bitmojiX+(bitmojiH/100*97), bitmojiY+(bitmojiH/100*152), bitmojiX+(bitmojiH/100*80), bitmojiY+(bitmojiH/100*154));
+
+noStroke();
+    fill(92, 65, 55);
+    quad(bitmojiX+(bitmojiH/100*86), bitmojiY+(bitmojiH/100*17), bitmojiX+(bitmojiH/100*146), bitmojiY+(bitmojiH/100*88), bitmojiX+(bitmojiH/100*180), bitmojiY+(bitmojiH/100*160), bitmojiX+(bitmojiH/100*188), bitmojiY+(bitmojiH/100*56));
+    quad(bitmojiX+(bitmojiH/100*30), bitmojiY+(bitmojiH/100*75), bitmojiX+(bitmojiH/100*17), bitmojiY+(bitmojiH/100*165), bitmojiX+(bitmojiH/100*147), bitmojiY-(bitmojiH/100*2), bitmojiX-(bitmojiH/100*46), bitmojiY+(bitmojiH/100*88));
+    quad(bitmojiX+(bitmojiH/100*87), bitmojiY+(bitmojiH/100*84), bitmojiX+(bitmojiH/100*99), bitmojiY+(bitmojiH/100*125), bitmojiX+(bitmojiH/100*150), bitmojiY+(bitmojiH/100*26), bitmojiX+(bitmojiH/100*17), bitmojiY+(bitmojiH/100*34));
+
+};
+    var drawBitmoji = function(bitmojiX, bitmojiY, bitmojiH){
+    
+    
+    
+    drawHead(bitmojiX, bitmojiY, bitmojiH);
+    drawBody(bitmojiX, bitmojiY, bitmojiH);
+};
+
+
+
+var Bitmoji = function(x, y) {
+    this.x = x;
+    this.y = y;
+    this.sticks = 0;
+};
+
+Bitmoji.prototype.draw = function() {
+    fill(224, 42, 42);
+    this.y = constrain(this.y, 0, height-85);
+    drawBitmoji(this.x,this.y , 25, 35); //call bitmoji function to replace image
+};
+
+Bitmoji.prototype.hop = function() {
+    this.y -= 5;
+    if((this.y < 60) && scoreDirection === 0){
+        score +=1;
+        scoreDirection = 1;
+    
+}
+
+    if(this.y > 240 && scoreDirection === 1){
+        score +=1;
+        scoreDirection = 0;
+}
+};
+
+Bitmoji.prototype.fall = function() {
+    this.y += 5;
+    
+};
+
+Bitmoji.prototype.checkForStickGrab = function(stick) {
+    if ((stick.x >= this.x && stick.x <= (this.x + 40)) &&
+        (stick.y >= this.y && stick.y <= (this.y + 40))) {
+        stick.y = -400;
+        score--; /////lose points if u hit cars
+    }
+};
+
+var Stick = function(x, y) { 
+    //speed parameter
+    this.speed = random(1,3);
+    this.x = x;
+    this.y = y;
+    //property of speed
+};
+
+Stick.prototype.draw = function() {
+    fill(89, 71, 0);
+    rectMode(CORNER);
+    rect(this.x, this.y, 60, 20);
+    ellipse(this.x+15, this.y+25, 23, 17);
+    ellipse(this.x+45, this.y+25, 23, 17);   //Replace with a car, will take multiple lines
+};
+
+var Bitmoji = new Bitmoji(200, 300);
+
+var sticks = [];
+for (var i = -437; i < 100; i++) {  
+    sticks.push(new Stick(i * -116 + -97, random(20, 260))); //Change to negative scale so the sticks are drawn with a lower x value every time. Add speed paramter, assign that value a rounded random number 1, 2, or 3
+}
+/*
+var grassXs = [];
+for (var i = 0; i < 25; i++) { 
+    grassXs.push(i*20);
+}
+remove grass from program
+*/
+
+draw = function() {
+    
+    
+    
+    
+    // static
+    background(218, 249, 250);
+    fill(128, 91, 67);
+    rect(1,-50,455,100);
+    fill(130, 79, 43);
+    rectMode(CORNER);
+    rect(0, height*0.90, width, height*0.10);
+    
+    /*
+    for (var i = 0; i < grassXs.length; i++) {
+        image(getImage("cute/GrassBlock"), grassXs[i], height*0.85, 20, 20);
+        grassXs[i] -= 1;
+        if (grassXs[i] <= -20) {
+            grassXs[i] = width;
+        }
+    }
+    remove grass
+    */
+    for (var i = 0; i < sticks.length; i++) {
+        sticks[i].draw();
+        Bitmoji.checkForStickGrab(sticks[i]);
+        sticks[i].x -= +1;  //Add the sticks speed value every time
+    }
+    
+    for (var i = 0; i < sticks.length; i++) {
+        sticks[i].draw();
+        Bitmoji.checkForStickGrab(sticks[i]);
+        sticks[i].x -= +1*sticks[i].speed;  //Add the sticks speed value every time
+    }
+    
+    textSize(18);
+    text("Score: " + score, 20, 30);
+    
+    if (Bitmoji.sticks/sticks.length >= 0.95) {
+        textSize(36);
+        text("YOU WIN!!!!", 100, 200);
+    }
+    
+    if (keyIsPressed && keyCode === 0) {
+        Bitmoji.hop();
+    } else {
+        Bitmoji.fall();
+    }
+   
+    Bitmoji.draw();
+    
+    
+     if (currentScene === 0)
+    {
+        splash();
+    }
+};
+
+ 
+
