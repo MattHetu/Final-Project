@@ -1,0 +1,46 @@
+//Evil Cactus code
+fill(87, 153, 0);
+noStroke();
+rect(170, 187, 33, 94, 25);//base of the cactus
+rect(170, 269, 33, 49);
+bezier(170, 288, 124, 272, 110, 161, 170, 261);//left arm
+bezier(200, 268, 263, 228, 251, 137, 200, 240);//right arm
+strokeWeight(1);
+stroke(87, 84, 87);
+//grey detail lines
+line(196, 212, 193, 317);
+beginShape();
+curveVertex(242, 460);
+curveVertex(175, 280);
+curveVertex(140, 236);
+curveVertex(93, 58);
+endShape();
+beginShape();
+curveVertex(185, 637);
+curveVertex(176, 318);
+curveVertex(183, 222);
+curveVertex(187, 108);
+endShape();
+beginShape();
+curveVertex(177, 567);
+curveVertex(183, 318);
+curveVertex(187, 198);
+curveVertex(149, 108);
+endShape();
+beginShape();
+curveVertex(94, 378);
+curveVertex(194, 256);
+curveVertex(229, 201);
+curveVertex(257, -29);
+endShape();
+
+//eyes & eyebrows
+fill(0, 0, 0);
+ellipse(180, 210, 8, 22);
+ellipse(193, 210, 8, 22);
+stroke(0, 0, 0);
+strokeWeight(3);
+line(175, 193, 185, 201);
+line(188, 201, 198, 193);
+
+
