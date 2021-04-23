@@ -1,0 +1,22 @@
+//start screen 
+var drawSplashScreen = function(){//start screen
+    scene = 0;
+    background(255, 240, 212);
+    
+    drawEvilCactus(100,100,100,100);
+    
+    
+    drawBitmojiZ(16,199,52,114);
+    rectMode(CENTER);
+    drawBitmojiM(246,177,112,100);
+    
+    fill(0, 0, 0);
+    textSize(40);
+    text("Bitmoji Runner", 68, 105);
+    //draws static car
+    fill(89, 71, 0);
+    strokeWeight(2);
+    btn1.draw();
+};
+
+drawSplashScreen();
