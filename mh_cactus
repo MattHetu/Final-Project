@@ -1,46 +1,48 @@
+var drawCactus = function(CactusX, CactusY, CactusHeight){
+
 //Evil Cactus code
 fill(87, 153, 0);
 noStroke();
-rect(170, 187, 33, 94, 25);//base of the cactus
-rect(170, 269, 33, 49);
-bezier(170, 288, 124, 272, 110, 161, 170, 261);//left arm
-bezier(200, 268, 263, 228, 251, 137, 200, 240);//right arm
+rect(CactusX + (CactusHeight/150*70), CactusY + (CactusHeight/150*87), CactusHeight/150*33, CactusHeight/150*94, CactusHeight/150*25);//base of the cactus
+rect(CactusX + (CactusHeight/150*70), CactusY + (CactusHeight/150*169), CactusHeight/150*33, CactusHeight/150*49);
+bezier(CactusX + (CactusHeight/150*70), CactusY + (CactusHeight/150*188), CactusX + (CactusHeight/150*24), CactusY + (CactusHeight/150*172), CactusX + (CactusHeight/150*10), CactusY + (CactusHeight/150*61), CactusX + (CactusHeight/150*70), CactusY + (CactusHeight/150*161));//left arm
+bezier(CactusX + (CactusHeight/150*100), CactusY + (CactusHeight/150*168), CactusX + (CactusHeight/150*163), CactusY + (CactusHeight/150*128), CactusX + (CactusHeight/150*151), CactusY + (CactusHeight/150*37), CactusX + (CactusHeight/150*100), CactusY + (CactusHeight/150*140));//right arm
 strokeWeight(1);
 stroke(87, 84, 87);
 //grey detail lines
-line(196, 212, 193, 317);
+line(CactusX + (CactusHeight/150*96), CactusY + (CactusHeight/150*112), CactusX + (CactusHeight/150*93), CactusY + (CactusHeight/150*217));
 beginShape();
-curveVertex(242, 460);
-curveVertex(175, 280);
-curveVertex(140, 236);
-curveVertex(93, 58);
+curveVertex(CactusX + (CactusHeight/150*142), CactusY + (CactusHeight/150*360));
+curveVertex(CactusX + (CactusHeight/150*75), CactusY + (CactusHeight/150*180));
+curveVertex(CactusX + (CactusHeight/150*40), CactusY + (CactusHeight/150*136));
+curveVertex(CactusX - (CactusHeight/150*7), CactusY - (CactusHeight/150*42));
 endShape();
 beginShape();
-curveVertex(185, 637);
-curveVertex(176, 318);
-curveVertex(183, 222);
-curveVertex(187, 108);
+curveVertex(CactusX + (CactusHeight/150*85), CactusY + (CactusHeight/150*537));
+curveVertex(CactusX + (CactusHeight/150*76), CactusY + (CactusHeight/150*218));
+curveVertex(CactusX + (CactusHeight/150*83), CactusY + (CactusHeight/150*122));
+curveVertex(CactusX + (CactusHeight/150*87), CactusY + (CactusHeight/150*8));
 endShape();
 beginShape();
-curveVertex(177, 567);
-curveVertex(183, 318);
-curveVertex(187, 198);
-curveVertex(149, 108);
+curveVertex(CactusX + (CactusHeight/150*77), CactusY + (CactusHeight/150*467));
+curveVertex(CactusX + (CactusHeight/150*83), CactusY + (CactusHeight/150*218));
+curveVertex(CactusX + (CactusHeight/150*87), CactusY + (CactusHeight/150*98));
+curveVertex(CactusX + (CactusHeight/150*49), CactusY + (CactusHeight/150*8));
 endShape();
 beginShape();
-curveVertex(94, 378);
-curveVertex(194, 256);
-curveVertex(229, 201);
-curveVertex(257, -29);
+curveVertex(CactusX - (CactusHeight/150*6), CactusY + (CactusHeight/150*278));
+curveVertex(CactusX + (CactusHeight/150*94), CactusY + (CactusHeight/150*156));
+curveVertex(CactusX + (CactusHeight/150*129),  CactusY + (CactusHeight/150*101));
+curveVertex(CactusX + (CactusHeight/150*157), CactusY - (CactusHeight/150*129));
 endShape();
 
 //eyes & eyebrows
 fill(0, 0, 0);
-ellipse(180, 210, 8, 22);
-ellipse(193, 210, 8, 22);
+ellipse(CactusX + (CactusHeight/150*80), CactusY + (CactusHeight/150*110), CactusHeight/150*8, CactusHeight/150*22);
+ellipse(CactusX + (CactusHeight/150*93), CactusY + (CactusHeight/150*110), CactusHeight/150*8, CactusHeight/150*22);
 stroke(0, 0, 0);
 strokeWeight(3);
-line(175, 193, 185, 201);
-line(188, 201, 198, 193);
+line(CactusX + (CactusHeight/150*75), CactusY + (CactusHeight/150*93), CactusX + (CactusHeight/150*85), CactusY + (CactusHeight/150*101));
+line(CactusX + (CactusHeight/150*88), CactusY + (CactusHeight/150*101), CactusX + (CactusHeight/150*98), CactusY + (CactusHeight/150*93));
 
-
+};
