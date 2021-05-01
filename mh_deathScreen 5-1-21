@@ -1,0 +1,9 @@
+var drawDeathScreen = function(){
+    background(242, 111, 111);
+    fill(0, 0, 0);
+    textSize(36);
+    text("You Ran Out of Lives!", 25, 90);
+    image(getImage("creatures/OhNoes"), 122, 143, 160, 160);
+    textSize(24);
+    text("Click Restart to try again...", 63, 368);
+};
