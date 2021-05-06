@@ -346,19 +346,11 @@ var btnZ = new ButtonZ({
         Player.prototype.draw = function() {
     fill(255, 0, 0);
     this.y = constrain(this.y, 0, height-105);
-    drawBitmojiZ(this.x, this.y, 33);
+    drawBitmojiZ(this.x, this.y, 22);
 };
 
     }
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -367,9 +359,6 @@ Player.prototype.draw = function() {
     this.y = constrain(this.y, 0, height-105);
     drawBitmoji(this.x, this.y, 33);
 };
-
-
-
 
 
 
@@ -387,6 +376,15 @@ Player.prototype.checkIfHitCactus = function(cactus) {
     if ((cactus.x + 20 >= this.x && cactus.x - 30 <= this.x) &&
         (cactus.y + 30 >= this.y && cactus.y - 45 <= this.y)) {
         cactus.y = -400;
+        lives -= 1;
+    }
+    
+};
+
+Player.prototype.checkIfHitPterodactyl = function(pterodactyl) {
+    if ((pterodactyl.x + 20 >= this.x && pterodactyl.x - 30 <= this.x) &&
+        (pterodactyl.y + 30 >= this.y && pterodactyl.y - 45 <= this.y)) {
+        pterodactyl.y = -400;
         lives -= 1;
     }
     
@@ -418,6 +416,24 @@ for (var i = 0; i <= 200; i++) {
     }
 
 
+var EvilPterodactyl = function(x, y, speed){
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+};
+
+EvilPterodactyl.prototype.draw = function() {
+    image(getImage("avatars/piceratops-sapling"), this.x, this.y, 30, 30);
+};
+
+var pterodactyls = [];
+
+for (var i = 0; i <= 70; i++){
+    pterodactyls.push(new EvilPterodactyl(i * 400 + 250, random(20, 160)));
+    pterodactyls[i].speed = round(random(-4, -6));
+}
+
+
 var drawSplashScreen = function(){//start screen
     scene = 0;
     background(255, 240, 212);
@@ -425,9 +441,11 @@ var drawSplashScreen = function(){//start screen
     textSize(40);
     var f = createFont("monospace");
     textFont(f);
-    text("Bitmoji Runner", 44, 105);
-    drawBitmojiZ(25,137,40);
-    drawBitmoji(250,108,89);
+    text("Bitmoji Runner", 44, 90);
+    textSize(20);
+    text("Choose your character!", 79, 388);
+    drawBitmojiZ(46,187,27);
+    drawBitmoji(271,160,65);
     //draws static cactus
     drawCactus(108, 56, 150);
     btn1.draw();
@@ -442,12 +460,10 @@ mouseClicked = function(){
     if(scene === 0){
         btn1.handleMouseClick();//handles start button for only scene 0
     }
-    
-mouseClicked = function(){
     if(scene === 0){
         btnZ.handleMouseClick();//handles start button for only scene 0
     }
-};
+
 };
 
 var drawDeathScreen = function(){
@@ -483,6 +499,12 @@ var drawGame = function(){
         cacti[i].draw();
         player.checkIfHitCactus(cacti[i]);
         cacti[i].x += cacti[i].speed;// adds random speed value to each cactus of 1, 2, or 3
+    }
+    
+    for (var i = 0; i < pterodactyls.length; i++){
+        pterodactyls[i].draw();
+        player.checkIfHitPterodactyl(pterodactyls[i]);
+        pterodactyls[i].x += pterodactyls[i].speed;
     }
     
     fill(0, 0, 0);
