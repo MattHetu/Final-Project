@@ -338,7 +338,7 @@ var btnZ = new ButtonZ({
     x: 8,
     y: 308,
     label: "Zach",
-    onClick: function() {//changes scene to game screen and stillPlaying is enabled
+    onClick: function() {
         scene = 1;
         stillPlaying = true;
         score = millis();
@@ -392,31 +392,14 @@ Player.prototype.checkIfHitCactus = function(cactus) {
     
 };
 
-var EvilCactus = function(x, y, speed) {//add new parameter
+var EvilCactus = function(x, y, speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
-    //add new speed property
+   
 };
 
 EvilCactus.prototype.draw = function() {
-    /*
-    fill(89, 71, 0);
-    rectMode(CENTER);
-    rect(this.x, this.y, 105, 5);
-    fill(0, 0, 0);
-    ellipse(this.x - 30, this.y + 11, 25, 25);
-    ellipse(this.x + 30, this.y + 11, 25, 25);
-    noStroke();
-    fill(255, 0, 0);
-    rect(this.x, this.y - 14, 105, 25, 3);
-    rect(this.x - 4, this.y - 39, 67, 25);
-    fill(227, 254, 255);
-    rect(this.x + 14, this.y - 38, 28, 23);
-    rect(this.x + -20, this.y - 38, 28, 23);
-    fill(247, 255, 0);
-    ellipse(this.x + 46, this.y - 16, 15, 19);
-    */
     drawCactus(this.x, this.y, 73);
 };
 
@@ -429,7 +412,7 @@ for (var i = 0; i <= 200; i++) {
     cacti[i].speed = round(random(-1, -3));
     stillPlaying = true;
         if(i === 200){
-            stillPlaying = false; //stops the game once number of cars reaches 100
+            stillPlaying = false; 
         }
     
     }
@@ -508,7 +491,7 @@ var drawGame = function(){
     text("Lives: " + lives, 324, 30);
     
     
-    if (keyIsPressed && keyCode === 0) {//allows for bitmoji to rise and fall based upon whether the spacebar is pressed or not
+    if (keyIsPressed && keyCode === 0) {
         player.jump();
     } else {
         player.fall();
